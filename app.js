@@ -686,7 +686,6 @@
       .from('.hero-titulo span', { yPercent: 115, duration: 1.2, stagger: 0.06 }, '<0.25')
       .from('.hero-lema, .buscador', { autoAlpha: 0, y: 24, duration: 0.9, stagger: 0.12 }, '<0.5')
       .add(() => document.body.classList.add('listo'));
-    gsap.to('.hero-titulo', { yPercent: 28, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to('.hero-foto img', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     $$('.titular').forEach(t => {
       gsap.from(t, { clipPath: 'inset(0 0 100% 0)', y: 40, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: t, start: 'top 88%' } });

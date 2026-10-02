@@ -1,5 +1,5 @@
 /* MANTRA — service worker: la app abre sin conexión y las fotos se guardan al verlas. */
-const VERSION = 'mantra-v1';
+const VERSION = 'mantra-v2';
 const NUCLEO = ['./', 'index.html', 'styles.css', 'app.js', 'data.js', 'manifest.webmanifest', 'icons/icon.svg',
   'vendor/gsap.min.js', 'vendor/ScrollTrigger.min.js',
   'fonts/anton-latin-400-normal.woff2', 'fonts/instrument-serif-latin-400-normal.woff2',
