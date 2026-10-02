@@ -1,0 +1,15 @@
+{
+  "name": "MANTRA — Reservas de tatuaje",
+  "short_name": "MANTRA",
+  "description": "Encuentra a tu artista, calcula tu pieza y reserva tu sesión.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "lang": "es",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

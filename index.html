@@ -3,401 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MANTRA — La plataforma donde el arte del tatuaje cobra vida. Conecta con artistas, visualiza diseños y reserva tu sesión.">
-  <meta name="keywords" content="tatuajes, artistas, reservas, diseño, ink, mantra">
-  <meta name="theme-color" content="#050505">
+  <meta name="description" content="MANTRA — Directorio de tatuadores. Explora obras por estilo, compara artistas y reserva tu sesión con disponibilidad real.">
+  <meta name="theme-color" content="#0a0908">
   <meta property="og:title" content="MANTRA — Tinta que cuenta tu historia">
-  <meta property="og:description" content="Conecta con los mejores artistas, visualiza tu tatuaje y reserva tu sesión.">
+  <meta property="og:description" content="Encuentra a tu artista, calcula tu pieza y reserva tu sesión.">
   <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <title>MANTRA — Tinta que cuenta tu historia</title>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Saltar al contenido</a>
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
 
-  <div id="preloader">
-    <div class="preloader-inner">
-      <div class="ink-drop"></div>
-      <span class="preloader-text">MANTRA</span>
-    </div>
-  </div>
+  <div class="telon" id="telon" aria-hidden="true"><span>Mantra</span></div>
+  <div class="grano" aria-hidden="true"></div>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-follower" aria-hidden="true"></div>
-
-  <div class="scroll-progress" aria-hidden="true">
-    <div class="scroll-progress__fill"></div>
-  </div>
-
-  <header class="site-header">
-    <nav class="nav-container" aria-label="Navegación principal">
-      <a href="#hero" class="nav-logo" aria-label="MANTRA inicio">MANTRA</a>
-      <ul class="nav-links" role="menubar">
-        <li role="none"><a href="#concepto" role="menuitem">Concepto</a></li>
-        <li role="none"><a href="#artistas" role="menuitem">Artistas</a></li>
-        <li role="none"><a href="#galeria" role="menuitem">Galería</a></li>
-        <li role="none"><a href="#reservas" role="menuitem">Reservas</a></li>
-        <li role="none"><a href="#app" role="menuitem">App</a></li>
-      </ul>
-      <a href="#reservas" class="nav-cta">Reservar</a>
-      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <header class="cabecera" id="cabecera">
+    <a href="#inicio" class="marca" aria-label="MANTRA, inicio">Mantra</a>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#artistas">Artistas</a>
+      <a href="#obras">Obras</a>
+      <a href="#presupuesto">Presupuesto</a>
+      <a href="#cuidados">Cuidados</a>
     </nav>
+    <div class="cabecera-acciones">
+      <button class="btn-texto" id="abrir-espacio" type="button">Mi espacio <span class="contador" id="contador-espacio" hidden>0</span></button>
+      <a href="#reservar" class="btn btn-rojo">Reservar sesión</a>
+      <button class="hamb" id="hamb" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    </div>
   </header>
 
-  <nav class="side-nav" aria-label="Secciones">
-    <a href="#hero" class="side-dot active" aria-label="Inicio" data-section="hero"></a>
-    <a href="#concepto" class="side-dot" aria-label="Concepto" data-section="concepto"></a>
-    <a href="#artistas" class="side-dot" aria-label="Artistas" data-section="artistas"></a>
-    <a href="#galeria" class="side-dot" aria-label="Galería" data-section="galeria"></a>
-    <a href="#reservas" class="side-dot" aria-label="Reservas" data-section="reservas"></a>
-    <a href="#app" class="side-dot" aria-label="App" data-section="app"></a>
-  </nav>
-
-  <div class="mobile-overlay"></div>
-
-  <main id="main-content" class="scroll-container">
-    <section id="hero" class="snap-section" data-reveal="none">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
-      <div class="hero-content">
-        <div class="hero-badge animate-in">Plataforma #1 de tatuajes</div>
-        <h1 class="hero-title">
-          <span class="letter" style="--i:0">M</span><span class="letter" style="--i:1">A</span><span class="letter" style="--i:2">N</span><span class="letter" style="--i:3">T</span><span class="letter" style="--i:4">R</span><span class="letter" style="--i:5">A</span>
+  <main id="contenido">
+    <!-- INICIO -->
+    <section class="hero" id="inicio">
+      <div class="hero-foto" id="hero-foto"></div>
+      <div class="hero-centro">
+        <p class="hero-lema">Tinta que cuenta tu historia</p>
+        <h1 class="hero-titulo" aria-label="Mantra">
+          <span>M</span><span>A</span><span>N</span><span>T</span><span>R</span><span>A</span>
         </h1>
-        <p class="hero-subtitle animate-in" style="--delay:0.6s">Tinta que cuenta tu historia</p>
-        <div class="hero-cta-group animate-in" style="--delay:0.8s">
-          <a href="#galeria" class="btn btn-primary">Explorar obras</a>
-          <a href="#reservas" class="btn btn-outline">Reservar sesión</a>
-        </div>
-        <div class="hero-stats animate-in" style="--delay:1s">
-          <div class="stat"><span class="stat-number">12K+</span><span class="stat-label">Artistas</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><span class="stat-number">98K+</span><span class="stat-label">Obras</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><span class="stat-number">45K+</span><span class="stat-label">Reservas</span></div>
-        </div>
       </div>
-      <div class="scroll-indicator animate-in" style="--delay:1.2s" aria-hidden="true">
-        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-        <span>Scroll</span>
-      </div>
+      <form class="buscador" id="buscador" aria-label="Buscar artista">
+        <label>Busco
+          <select id="b-estilo" name="estilo"><option value="">cualquier estilo</option></select>
+        </label>
+        <label>en
+          <select id="b-ciudad" name="ciudad"><option value="">toda España</option></select>
+        </label>
+        <button class="btn btn-rojo" type="submit">Ver artistas</button>
+        <p class="buscador-nota" id="buscador-nota"></p>
+      </form>
     </section>
 
-    <section id="concepto" class="snap-section" data-reveal="up">
-      <div class="section-curtain"></div>
-      <div class="section-inner">
-        <div class="section-header">
-          <span class="section-tag animate-in">01 / Concepto</span>
-          <h2 class="section-title animate-in" style="--delay:0.15s">Donde el arte<br>vive en la piel</h2>
-          <p class="section-desc animate-in" style="--delay:0.3s">MANTRA conecta el talento con la visión. Una plataforma diseñada para transformar ideas en tinta, acercando artistas y clientes como nunca antes.</p>
-        </div>
-        <div class="concepto-grid">
-          <article class="concepto-card animate-in" style="--delay:0.2s">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            </div>
-            <h3>Conecta</h3>
-            <p>Encuentra al artista perfecto para tu visión. Perfiles detallados, portfolios y reseñas reales.</p>
-          </article>
-          <article class="concepto-card animate-in" style="--delay:0.35s">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            </div>
-            <h3>Crea</h3>
-            <p>Diseña y visualiza tu tatuaje con herramientas AR antes de sentarte en la silla.</p>
-          </article>
-          <article class="concepto-card animate-in" style="--delay:0.5s">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3>Comparte</h3>
-            <p>Forma parte de la comunidad más vibrante. Inspírate, comparte tu proceso y crece.</p>
-          </article>
-        </div>
+    <div class="cinta" aria-hidden="true"><div class="cinta-pista" id="cinta"></div></div>
+
+    <!-- ARTISTAS -->
+    <section class="seccion" id="artistas">
+      <div class="seccion-cabeza">
+        <h2 class="titular">Seis manos.<br>Ninguna se parece.</h2>
+        <p class="entrada">Cada artista del directorio publica su tarifa por hora, su agenda real y las obras que ha firmado. Elige por estilo y mira cuándo tiene hueco.</p>
       </div>
+      <div class="filtros" id="filtros-artistas" role="group" aria-label="Filtrar artistas por estilo"></div>
+      <ul class="lista-artistas" id="lista-artistas"></ul>
+      <p class="vacio" id="artistas-vacio" hidden>Ningún artista coincide con ese filtro. <button class="enlace" type="button" id="limpiar-artistas">Quitar filtros</button></p>
+      <div class="flotante" id="flotante" aria-hidden="true"><img alt=""></div>
     </section>
 
-    <section id="artistas" class="snap-section" data-reveal="right">
-      <div class="section-curtain"></div>
-      <div class="section-inner">
-        <div class="section-header">
-          <span class="section-tag animate-in">02 / Artistas</span>
-          <h2 class="section-title animate-in" style="--delay:0.15s">Maestros<br>de la tinta</h2>
-        </div>
-        <div class="artistas-scroll">
-          <article class="artista-card animate-in" style="--delay:0.2s" data-tilt>
-            <div class="artista-img"><img src="https://picsum.photos/seed/inkartist1/400/500.jpg" alt="Retrato de Nyx Vértigo" loading="lazy"></div>
-            <div class="artista-info">
-              <h3>Nyx Vértigo</h3>
-              <span class="artista-specialty">Blackwork &amp; Dotwork</span>
-              <div class="artista-meta"><span class="artista-rating">★ 4.9</span><span class="artista-works">127 obras</span></div>
-            </div>
-          </article>
-          <article class="artista-card animate-in" style="--delay:0.3s" data-tilt>
-            <div class="artista-img"><img src="https://picsum.photos/seed/inkartist2/400/500.jpg" alt="Retrato de Kael Sombra" loading="lazy"></div>
-            <div class="artista-info">
-              <h3>Kael Sombra</h3>
-              <span class="artista-specialty">Realismo Oscuro</span>
-              <div class="artista-meta"><span class="artista-rating">★ 4.8</span><span class="artista-works">89 obras</span></div>
-            </div>
-          </article>
-          <article class="artista-card animate-in" style="--delay:0.4s" data-tilt>
-            <div class="artista-img"><img src="https://picsum.photos/seed/inkartist3/400/500.jpg" alt="Retrato de Luma Fierro" loading="lazy"></div>
-            <div class="artista-info">
-              <h3>Luma Fierro</h3>
-              <span class="artista-specialty">Fineline &amp; Ornamental</span>
-              <div class="artista-meta"><span class="artista-rating">★ 5.0</span><span class="artista-works">203 obras</span></div>
-            </div>
-          </article>
-          <article class="artista-card animate-in" style="--delay:0.5s" data-tilt>
-            <div class="artista-img"><img src="https://picsum.photos/seed/inkartist4/400/500.jpg" alt="Retrato de Ronak Tinta" loading="lazy"></div>
-            <div class="artista-info">
-              <h3>Ronak Tinta</h3>
-              <span class="artista-specialty">Japonés Tradicional</span>
-              <div class="artista-meta"><span class="artista-rating">★ 4.9</span><span class="artista-works">156 obras</span></div>
-            </div>
-          </article>
-          <article class="artista-card animate-in" style="--delay:0.6s" data-tilt>
-            <div class="artista-img"><img src="https://picsum.photos/seed/inkartist5/400/500.jpg" alt="Retrato de Sia Négroa" loading="lazy"></div>
-            <div class="artista-info">
-              <h3>Sia Négroa</h3>
-              <span class="artista-specialty">Geométrico &amp; Mandala</span>
-              <div class="artista-meta"><span class="artista-rating">★ 4.7</span><span class="artista-works">94 obras</span></div>
-            </div>
-          </article>
-          <article class="artista-card animate-in" style="--delay:0.7s" data-tilt>
-            <div class="artista-img"><img src="https://picsum.photos/seed/inkartist6/400/500.jpg" alt="Retrato de Draven Lox" loading="lazy"></div>
-            <div class="artista-info">
-              <h3>Draven Lox</h3>
-              <span class="artista-specialty">Neo Tradicional</span>
-              <div class="artista-meta"><span class="artista-rating">★ 4.8</span><span class="artista-works">178 obras</span></div>
-            </div>
-          </article>
-        </div>
+    <!-- OBRAS -->
+    <section class="seccion seccion-obras" id="obras">
+      <div class="seccion-cabeza">
+        <h2 class="titular">Piel firmada</h2>
+        <p class="entrada">Guarda las piezas que te gusten: se añaden a tu espacio y puedes adjuntarlas como referencia al reservar.</p>
       </div>
+      <div class="filtros" id="filtros-obras" role="group" aria-label="Filtrar obras por estilo"></div>
+      <div class="muro" id="muro"></div>
     </section>
 
-    <section id="galeria" class="snap-section" data-reveal="circle">
-      <div class="section-curtain"></div>
-      <div class="section-inner">
-        <div class="section-header">
-          <span class="section-tag animate-in">03 / Galería</span>
-          <h2 class="section-title animate-in" style="--delay:0.15s">Obras que<br>hablan</h2>
+    <!-- PRESUPUESTO -->
+    <section class="seccion papel" id="presupuesto">
+      <div class="papel-rejilla">
+        <div>
+          <h2 class="titular">¿Cuánto cuesta<br>lo que tienes en mente?</h2>
+          <p class="entrada">El precio de un tatuaje es tiempo de aguja. Dinos tamaño, zona y color y calculamos las horas con la tarifa pública de cada artista.</p>
+          <ol class="pasos">
+            <li><span><strong>Calcula</strong> una horquilla de precio aquí mismo.</span></li>
+            <li><span><strong>Reserva</strong> día y hora en la agenda del artista.</span></li>
+            <li><span><strong>Consulta previa</strong>: el artista ajusta diseño y precio contigo.</span></li>
+            <li><span><strong>Sesión</strong> y primer repaso incluido.</span></li>
+          </ol>
         </div>
-        <div class="gallery-filters animate-in" style="--delay:0.25s" role="tablist" aria-label="Filtrar galería">
-          <button class="filter-btn active" role="tab" aria-selected="true" data-filter="all">Todos</button>
-          <button class="filter-btn" role="tab" aria-selected="false" data-filter="blackwork">Blackwork</button>
-          <button class="filter-btn" role="tab" aria-selected="false" data-filter="realismo">Realismo</button>
-          <button class="filter-btn" role="tab" aria-selected="false" data-filter="tradicional">Tradicional</button>
-          <button class="filter-btn" role="tab" aria-selected="false" data-filter="fineline">Fineline</button>
-          <button class="filter-btn" role="tab" aria-selected="false" data-filter="geometrico">Geométrico</button>
-        </div>
-        <div class="gallery-grid animate-in" style="--delay:0.35s">
-          <article class="gallery-item" data-category="blackwork">
-            <img src="https://picsum.photos/seed/ink01/600/750.jpg" alt="Tatuaje blackwork abstracto" loading="lazy">
-            <div class="gallery-overlay"><h3>Abismo</h3><p>Nyx Vértigo</p></div>
-          </article>
-          <article class="gallery-item" data-category="realismo">
-            <img src="https://picsum.photos/seed/ink02/600/750.jpg" alt="Tatuaje realista de retrato" loading="lazy">
-            <div class="gallery-overlay"><h3>Mirada</h3><p>Kael Sombra</p></div>
-          </article>
-          <article class="gallery-item" data-category="fineline">
-            <img src="https://picsum.photos/seed/ink03/600/750.jpg" alt="Tatuaje fineline botánico" loading="lazy">
-            <div class="gallery-overlay"><h3>Ramificación</h3><p>Luma Fierro</p></div>
-          </article>
-          <article class="gallery-item" data-category="tradicional">
-            <img src="https://picsum.photos/seed/ink04/600/750.jpg" alt="Tatuaje tradicional japonés" loading="lazy">
-            <div class="gallery-overlay"><h3>Ōkami</h3><p>Ronak Tinta</p></div>
-          </article>
-          <article class="gallery-item" data-category="geometrico">
-            <img src="https://picsum.photos/seed/ink05/600/750.jpg" alt="Tatuaje geométrico mandala" loading="lazy">
-            <div class="gallery-overlay"><h3>Simetría</h3><p>Sia Négroa</p></div>
-          </article>
-          <article class="gallery-item" data-category="blackwork">
-            <img src="https://picsum.photos/seed/ink06/600/750.jpg" alt="Tatuaje blackwork tribal" loading="lazy">
-            <div class="gallery-overlay"><h3>Ritual</h3><p>Nyx Vértigo</p></div>
-          </article>
-          <article class="gallery-item" data-category="realismo">
-            <img src="https://picsum.photos/seed/ink07/600/750.jpg" alt="Tatuaje realista naturaleza" loading="lazy">
-            <div class="gallery-overlay"><h3>Fauna</h3><p>Kael Sombra</p></div>
-          </article>
-          <article class="gallery-item" data-category="tradicional">
-            <img src="https://picsum.photos/seed/ink08/600/750.jpg" alt="Tatuaje neo tradicional color" loading="lazy">
-            <div class="gallery-overlay"><h3>Fénix</h3><p>Draven Lox</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="reservas" class="snap-section" data-reveal="down">
-      <div class="section-curtain"></div>
-      <div class="section-inner">
-        <div class="reservas-layout">
-          <div class="reservas-info">
-            <span class="section-tag animate-in">04 / Reservas</span>
-            <h2 class="section-title animate-in" style="--delay:0.15s">Tu sesión,<br>tu ritmo</h2>
-            <p class="section-desc animate-in" style="--delay:0.3s">Elige tu estilo, selecciona tu artista y reserva en segundos. Sin llamadas, sin esperas—tu próximo tatuaje está a un clic.</p>
-            <div class="reservas-features animate-in" style="--delay:0.4s">
-              <div class="reserva-feature"><div class="rf-icon">✓</div><span>Confirmación instantánea</span></div>
-              <div class="reserva-feature"><div class="rf-icon">✓</div><span>Recordatorios automáticos</span></div>
-              <div class="reserva-feature"><div class="rf-icon">✓</div><span>Reembolso flexible 48h</span></div>
-            </div>
+        <form class="calc" id="calc" aria-label="Calculadora de presupuesto">
+          <fieldset>
+            <legend>Tamaño</legend>
+            <div class="opciones" id="calc-tamanos"></div>
+          </fieldset>
+          <div class="calc-fila">
+            <label>Zona
+              <select id="calc-zona"></select>
+            </label>
+            <label>Estilo
+              <select id="calc-estilo"></select>
+            </label>
           </div>
-          <form id="booking-form" class="booking-form animate-in" style="--delay:0.3s" novalidate>
-            <div class="form-group">
-              <label for="b-style">Estilo</label>
-              <select id="b-style" required>
-                <option value="">Selecciona un estilo</option>
-                <option>Blackwork</option>
-                <option>Realismo</option>
-                <option>Tradicional</option>
-                <option>Fineline</option>
-                <option>Geométrico</option>
-                <option>Neo Tradicional</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="b-artist">Artista</label>
-              <select id="b-artist" required>
-                <option value="">Selecciona un artista</option>
-                <option>Nyx Vértigo</option>
-                <option>Kael Sombra</option>
-                <option>Luma Fierro</option>
-                <option>Ronak Tinta</option>
-                <option>Sia Négroa</option>
-                <option>Draven Lox</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <div class="form-group"><label for="b-date">Fecha</label><input type="date" id="b-date" required></div>
-              <div class="form-group"><label for="b-time">Hora</label>
-                <select id="b-time" required>
-                  <option value="">Hora</option>
-                  <option>10:00</option><option>11:00</option><option>12:00</option>
-                  <option>13:00</option><option>16:00</option><option>17:00</option>
-                  <option>18:00</option><option>19:00</option><option>20:00</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group"><label for="b-name">Nombre</label><input type="text" id="b-name" required placeholder="Tu nombre"></div>
-              <div class="form-group"><label for="b-email">Email</label><input type="email" id="b-email" required placeholder="tu@email.com"></div>
-            </div>
-            <div class="form-group">
-              <label for="b-desc">Describe tu idea</label>
-              <textarea id="b-desc" rows="3" placeholder="Cuéntanos qué tienes en mente..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Reservar sesión</button>
-            <div id="form-success" class="form-success" hidden>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <span>¡Reserva confirmada! Te enviaremos los detalles por email.</span>
-            </div>
-          </form>
+          <label class="check"><input type="checkbox" id="calc-color"> <span>A color (+15 % de tiempo)</span></label>
+          <div class="calc-resultado" aria-live="polite">
+            <p class="calc-horas" id="calc-horas"></p>
+            <ul class="calc-lista" id="calc-lista"></ul>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- RESERVA -->
+    <section class="seccion seccion-reserva" id="reservar">
+      <div class="seccion-cabeza">
+        <h2 class="titular">Reserva tu sesión</h2>
+        <p class="entrada">Cuatro pasos. No se cobra nada desde aquí: la señal se abona en el estudio.</p>
+      </div>
+      <div class="asistente" id="asistente">
+        <ol class="progreso" id="progreso" aria-label="Pasos de la reserva">
+          <li data-paso="1"><span>Tu idea</span></li>
+          <li data-paso="2"><span>Artista</span></li>
+          <li data-paso="3"><span>Fecha</span></li>
+          <li data-paso="4"><span>Tus datos</span></li>
+        </ol>
+        <div class="asistente-cuerpo">
+          <form class="paso" id="paso-form" novalidate></form>
+          <aside class="resumen" id="resumen" aria-label="Resumen de la reserva"></aside>
         </div>
       </div>
     </section>
 
-    <section id="app" class="snap-section" data-reveal="up">
-      <div class="section-curtain"></div>
-      <div class="section-inner">
-        <div class="app-layout">
-          <div class="app-content">
-            <span class="section-tag animate-in">05 / App</span>
-            <h2 class="section-title animate-in" style="--delay:0.15s">MANTRA<br>en tu bolsillo</h2>
-            <p class="section-desc animate-in" style="--delay:0.3s">Lleva la experiencia completa a tu móvil. Visualiza tatuajes en AR, gestiona tus citas y descubre artistas estés donde estés.</p>
-            <div class="app-features animate-in" style="--delay:0.4s">
-              <div class="app-feature">
-                <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-                <div><strong>AR Preview</strong><p>Visualiza el diseño en tu piel en tiempo real</p></div>
-              </div>
-              <div class="app-feature">
-                <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                <div><strong>Smart Match</strong><p>IA que encuentra tu artista ideal</p></div>
-              </div>
-              <div class="app-feature">
-                <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                <div><strong>Session Tracker</strong><p>Sigue cada paso de tu cita</p></div>
-              </div>
-              <div class="app-feature">
-                <div class="af-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                <div><strong>Comunidad</strong><p>Chatea, comparte e inspírate</p></div>
-              </div>
-            </div>
-            <div class="app-downloads animate-in" style="--delay:0.55s">
-              <a href="#" class="download-btn" aria-label="Descargar en App Store">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                <div><small>Descargar en</small><strong>App Store</strong></div>
-              </a>
-              <a href="#" class="download-btn" aria-label="Disponible en Google Play">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.85.56-1.43 1.27-1.07l14.74 8.5c.71.41.71 1.23 0 1.64L4.27 21.57C3.56 21.93 3 21.35 3 20.5z"/></svg>
-                <div><small>Disponible en</small><strong>Google Play</strong></div>
-              </a>
-            </div>
-          </div>
-          <div class="app-mockup animate-in" style="--delay:0.4s" aria-hidden="true">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="phone-header"><span>MANTRA</span></div>
-                <div class="phone-content">
-                  <div class="phone-card"><img src="https://picsum.photos/seed/appscreen1/300/200.jpg" alt=""></div>
-                  <div class="phone-card"><img src="https://picsum.photos/seed/appscreen2/300/200.jpg" alt=""></div>
-                  <div class="phone-nav">
-                    <span class="pn-active">🏠</span><span>🔍</span><span>📅</span><span>👤</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- CUIDADOS -->
+    <section class="seccion seccion-cuidados" id="cuidados">
+      <div class="cuidados-rejilla">
+        <div class="cuidados-foto" id="cuidados-foto"></div>
+        <div>
+          <h2 class="titular">Antes y después de la aguja</h2>
+          <div class="acordeon" id="acordeon"></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="#hero" class="footer-logo">MANTRA</a>
-        <p>Tinta que cuenta tu historia.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="X / Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 10.86 4.46V13a8.28 8.28 0 0 0 5.58 2.16v-3.44a4.84 4.84 0 0 1-3.77-1.56V6.69h3.77z"/></svg></a>
+  <footer class="pie">
+    <div class="pie-arriba">
+      <form class="boletin" id="boletin" novalidate>
+        <label for="boletin-email">Huecos de última hora y flash days, una vez al mes.</label>
+        <div class="boletin-campo">
+          <input type="email" id="boletin-email" placeholder="tu@email.com" required autocomplete="email">
+          <button class="btn btn-rojo" type="submit">Apuntarme</button>
         </div>
+        <p class="boletin-estado" id="boletin-estado" aria-live="polite"></p>
+      </form>
+      <div class="pie-app">
+        <p>Lleva tus citas en el móvil. MANTRA se instala como app y funciona sin conexión.</p>
+        <button class="btn btn-linea" id="instalar" type="button">Instalar la app</button>
+        <p class="pie-app-nota" id="instalar-nota" hidden></p>
       </div>
-      <div class="footer-links">
-        <div><h4>Explorar</h4><ul><li><a href="#artistas">Artistas</a></li><li><a href="#galeria">Galería</a></li><li><a href="#reservas">Reservas</a></li><li><a href="#">Estudios</a></li></ul></div>
-        <div><h4>Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Cookies</a></li></ul></div>
-        <div><h4>Soporte</h4><ul><li><a href="#">Ayuda</a></li><li><a href="#">Contacto</a></li><li><a href="#">FAQ</a></li></ul></div>
-      </div>
-      <div class="footer-newsletter">
-        <h4>Novedades</h4>
-        <form class="newsletter-form" novalidate>
-          <input type="email" placeholder="tu@email.com" required aria-label="Email para newsletter">
-          <button type="submit" aria-label="Suscribir">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-        </form>
-      </div>
+      <nav class="pie-enlaces" aria-label="Información">
+        <button type="button" data-legal="privacidad">Privacidad</button>
+        <button type="button" data-legal="terminos">Términos</button>
+        <button type="button" data-legal="cookies">Cookies</button>
+        <button type="button" data-legal="contacto">Contacto</button>
+      </nav>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 MANTRA. Todos los derechos reservados.</p>
-    </div>
+    <p class="pie-marca" aria-hidden="true"><span>M</span><span>A</span><span>N</span><span>T</span><span>R</span><span>A</span></p>
+    <p class="pie-legal">© 2026 MANTRA. Proyecto de demostración: artistas y estudios son ficticios. Fotografías de Unsplash.</p>
   </footer>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
-    <button class="lightbox-close" aria-label="Cerrar">&times;</button>
-    <img class="lightbox-img" src="" alt="">
+  <!-- PANEL: ARTISTA -->
+  <div class="panel" id="panel-artista" role="dialog" aria-modal="true" aria-labelledby="pa-nombre" hidden>
+    <div class="panel-fondo" data-cerrar></div>
+    <div class="panel-caja" id="panel-artista-caja"></div>
   </div>
 
-  <!-- GSAP and Plugins -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <!-- PANEL: MI ESPACIO -->
+  <div class="panel" id="panel-espacio" role="dialog" aria-modal="true" aria-labelledby="pe-titulo" hidden>
+    <div class="panel-fondo" data-cerrar></div>
+    <div class="panel-caja">
+      <button class="panel-cerrar" type="button" data-cerrar aria-label="Cerrar">Cerrar</button>
+      <h2 class="panel-titulo" id="pe-titulo">Mi espacio</h2>
+      <div class="pestanas" role="tablist">
+        <button role="tab" aria-selected="true" data-pestana="citas" type="button">Citas</button>
+        <button role="tab" aria-selected="false" data-pestana="guardadas" type="button">Obras guardadas</button>
+      </div>
+      <div id="espacio-contenido"></div>
+    </div>
+  </div>
+
+  <!-- VISOR -->
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Obra ampliada" hidden>
+    <button class="visor-cerrar" type="button" data-visor="cerrar" aria-label="Cerrar">Cerrar</button>
+    <button class="visor-nav visor-prev" type="button" data-visor="prev" aria-label="Anterior">‹</button>
+    <figure class="visor-figura">
+      <img id="visor-img" alt="">
+      <figcaption id="visor-pie"></figcaption>
+    </figure>
+    <button class="visor-nav visor-next" type="button" data-visor="next" aria-label="Siguiente">›</button>
+  </div>
+
+  <!-- DIÁLOGO LEGAL -->
+  <dialog class="dialogo" id="dialogo">
+    <h2 id="dialogo-titulo"></h2>
+    <p id="dialogo-texto"></p>
+    <form method="dialog"><button class="btn btn-rojo">Entendido</button></form>
+  </dialog>
+
+  <div class="avisos" id="avisos" aria-live="polite"></div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
